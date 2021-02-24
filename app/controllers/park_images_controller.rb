@@ -1,0 +1,2 @@
+class ParkImagesController < ApplicationController
+end
