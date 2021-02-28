@@ -5,7 +5,6 @@ class ParksController < ApplicationController
     # end
 
     def create
-        byebug
         park = Park.find_or_create_by(name: park_params['fullName'], url: park_params['url'], park_code: park_params['parkCode'], description: park_params['description'], latitude: park_params['latitude'], longitude: park_params['longitude'], designation: park_params['designation'])
 
         render json: park

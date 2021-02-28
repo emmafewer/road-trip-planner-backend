@@ -15,6 +15,17 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "campground_books", force: :cascade do |t|
+    t.bigint "campground_id", null: false
+    t.bigint "road_trip_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campground_id"], name: "index_campground_books_on_campground_id"
+    t.index ["road_trip_id"], name: "index_campground_books_on_road_trip_id"
+  end
+
   create_table "campground_images", force: :cascade do |t|
     t.text "url"
     t.bigint "campground_id", null: false
@@ -23,17 +34,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["campground_id"], name: "index_campground_images_on_campground_id"
-  end
-
-  create_table "campground_saves", force: :cascade do |t|
-    t.bigint "campground_id", null: false
-    t.bigint "road_trip_id", null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["campground_id"], name: "index_campground_saves_on_campground_id"
-    t.index ["road_trip_id"], name: "index_campground_saves_on_road_trip_id"
   end
 
   create_table "campgrounds", force: :cascade do |t|
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "park_books", force: :cascade do |t|
+    t.bigint "park_id", null: false
+    t.bigint "road_trip_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["park_id"], name: "index_park_books_on_park_id"
+    t.index ["road_trip_id"], name: "index_park_books_on_road_trip_id"
+  end
+
   create_table "park_images", force: :cascade do |t|
     t.text "url"
     t.bigint "park_id", null: false
@@ -53,17 +64,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["park_id"], name: "index_park_images_on_park_id"
-  end
-
-  create_table "park_saves", force: :cascade do |t|
-    t.bigint "park_id", null: false
-    t.bigint "road_trip_id", null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["park_id"], name: "index_park_saves_on_park_id"
-    t.index ["road_trip_id"], name: "index_park_saves_on_road_trip_id"
   end
 
   create_table "parks", force: :cascade do |t|
@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "campground_books", "campgrounds"
+  add_foreign_key "campground_books", "road_trips"
   add_foreign_key "campground_images", "campgrounds"
-  add_foreign_key "campground_saves", "campgrounds"
-  add_foreign_key "campground_saves", "road_trips"
+  add_foreign_key "park_books", "parks"
+  add_foreign_key "park_books", "road_trips"
   add_foreign_key "park_images", "parks"
-  add_foreign_key "park_saves", "parks"
-  add_foreign_key "park_saves", "road_trips"
   add_foreign_key "road_trips", "users"
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :campground_saves
-  resources :park_saves
+  resources :campground_books
+  resources :park_books
   resources :park_images
   resources :campground_images
   resources :campgrounds
