@@ -14,7 +14,7 @@ class RoadTripsController < ApplicationController
     def update
         byebug
         road_trip = RoadTrip.find(params[:id])
-        road_trip.update(start_date: road_trip_params['start_date'].strftime('%m/%d/%y'), end_date: road_trip_params['end_date'].strftime('%m/%d/%y'))
+        road_trip.update(start_date: road_trip_params['start_date'], end_date: road_trip_params['end_date'])
         render json: road_trip, include: [:parks, :campgrounds]
     end
 

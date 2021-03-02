@@ -10,6 +10,11 @@ class ParksController < ApplicationController
         render json: park, include: :images
     end
 
+    def destroy
+        park = Park.find(params[:id])
+        park.destroy
+    end
+
     private
 
     def park_params

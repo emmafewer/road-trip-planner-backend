@@ -16,6 +16,11 @@ class CampgroundsController < ApplicationController
         render json: campground, include: :images
     end
 
+    def destroy
+        campground = Campground.find(params[:id])
+        campground.destroy
+    end
+
     private
 
     def campground_params
