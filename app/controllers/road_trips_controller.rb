@@ -17,6 +17,11 @@ class RoadTripsController < ApplicationController
         render json: road_trip, include: [:parks, :campgrounds]
     end
 
+    def destroy
+        road_trip = RoadTrip.find(params[:id])
+        road_trip.destroy
+    end
+
     private
 
     def road_trip_params
