@@ -11,9 +11,9 @@ class CampgroundsController < ApplicationController
     # end
 
     def create
-        campground = Campground.find_or_create_by(name: campground_params['name'], url: campground_params['url'], side_id: campground_params['parkCode'], latitude: campground_params['latitude'], longitude: campground_params['longitude'])
+        campground = Campground.find_or_create_by(name: campground_params['name'], url: campground_params['url'], park_code: campground_params['parkCode'], latitude: campground_params['latitude'], longitude: campground_params['longitude'], description: campground_params['description'])
 
-        render json: campground, include: :images
+        render json: campground
     end
 
     def destroy
@@ -24,6 +24,6 @@ class CampgroundsController < ApplicationController
     private
 
     def campground_params
-        params.require(:campground).permit(:name, :url, :side_id, :latitude, :longitude)
+        params.require(:campground).permit(:name, :url, :park_code, :latitude, :longitude, :description)
     end
 end

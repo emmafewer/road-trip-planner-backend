@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
   create_table "campgrounds", force: :cascade do |t|
     t.text "url"
     t.text "name"
-    t.string "side_id"
+    t.string "park_code"
     t.string "latitude"
     t.string "longitude"
+    t.text "image"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_02_24_214415) do
     t.string "latitude"
     t.string "longitude"
     t.string "designation"
+    t.text "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -8,6 +8,7 @@ class CreateParks < ActiveRecord::Migration[6.1]
       t.string :latitude
       t.string :longitude
       t.string :designation
+      t.text :image
 
       t.timestamps
     end

@@ -3,9 +3,11 @@ class CreateCampgrounds < ActiveRecord::Migration[6.1]
     create_table :campgrounds do |t|
       t.text :url
       t.text :name
-      t.string :side_id
+      t.string :park_code
       t.string :latitude
       t.string :longitude
+      t.text :image
+      t.text :description
 
       t.timestamps
     end
