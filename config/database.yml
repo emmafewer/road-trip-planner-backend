@@ -21,6 +21,7 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
+  # username: road_trip_planner
   # password: <%= ENV['ROAD_TRIP_PLANNER_BACKEND_DATABASE_PASSWORD'] %>
   password: emma
   host: localhost
@@ -29,6 +30,7 @@ development:
   <<: *default
   database: road_trip_planner_backend_development
   username: postgres
+  # username: road_trip_planner
   password: emma
   host: localhost
 
@@ -66,6 +68,7 @@ test:
   <<: *default
   database: road_trip_planner_backend_test
   username: postgres
+  # username: road_trip_planner
   password: emma
   host: localhost
 
@@ -93,5 +96,6 @@ production:
   <<: *default
   database: road_trip_planner_backend_production
   username: postgres
+  # username: road_trip_planner
   password: emma
   host: localhost

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :images
   resources :campground_books
   resources :park_books
   resources :park_images
