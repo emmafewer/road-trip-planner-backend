@@ -1,5 +1,10 @@
 class RoadTripsController < ApplicationController
-    
+    skip_before_action :authorized, only: [:index, :show]
+
+    def index 
+        render json: RoadTrip.all
+    end
+
     def show
         road_trip = RoadTrip.find(params[:id])
         render json: road_trip, include: [:parks, :campgrounds]
