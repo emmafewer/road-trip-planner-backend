@@ -4,5 +4,5 @@ class RoadTrip < ApplicationRecord
   has_many :parks, through: :park_books
   has_many :campground_books, :dependent => :destroy
   has_many :campgrounds, through: :campground_books
-  validates :name, uniqueness: { scope: :user_id }
+  # validates :name, uniqueness: { scope: :user_id }
 end
