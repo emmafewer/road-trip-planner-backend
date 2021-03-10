@@ -11,9 +11,13 @@ class CampgroundsController < ApplicationController
     # end
 
     def create
-        campground = Campground.find_or_create_by(name: campground_params['name'], url: campground_params['url'], park_code: campground_params['parkCode'], latitude: campground_params['latitude'], longitude: campground_params['longitude'], description: campground_params['description'], image: campground_params['images'][0]['url'])
-        campground_params['images'].each do |i|
-            img = CampgroundImage.find_or_create_by(url: i['url'], title: i['title'], description: i['caption'], campground_id: campground.id)
+        if campground_params['images'][0] == nil 
+            campground = Campground.find_or_create_by(name: campground_params['name'], url: campground_params['url'], park_code: campground_params['parkCode'], latitude: campground_params['latitude'], longitude: campground_params['longitude'], description: campground_params['description'])
+        else
+            campground = Campground.find_or_create_by(name: campground_params['name'], url: campground_params['url'], park_code: campground_params['parkCode'], latitude: campground_params['latitude'], longitude: campground_params['longitude'], description: campground_params['description'], image: campground_params['images'][0]['url'])
+            campground_params['images'].each do |i|
+                img = CampgroundImage.find_or_create_by(url: i['url'], title: i['title'], description: i['caption'], campground_id: campground.id)
+            end
         end
 
         render json: campground, include: :campground_images

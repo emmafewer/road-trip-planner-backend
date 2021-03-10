@@ -12,8 +12,13 @@ class RoadTripsController < ApplicationController
 
     def create
         road_trip = RoadTrip.create(name: road_trip_params['name'], user_id: road_trip_params['user_id'])
+        if road_trip.valid?
+            render json: road_trip, include: [:user]
+        else
+            render json: {error: `#{road_trip.name} already exists`}, status: :not_acceptable
+        end
 
-        render json: road_trip, include: [:user]
+        
     end
 
     def update
